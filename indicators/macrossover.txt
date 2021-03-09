@@ -1,0 +1,17 @@
+//Moving Average Short
+mms = average[mmshort, mmtype]
+
+//Moving Average Long
+mml = average[mmlong, mmtype]
+
+// Green Arrow if MA Short > MA Long 
+IF mms CROSSES OVER mml THEN
+  DRAWARROWUP(barindex, low) COLOURED(0,255,127)
+ENDIF
+
+// Red Arrow if MA Short < MA Long
+IF mms CROSSES UNDER mml THEN
+  DRAWARROWDOWN(barindex, high) COLOURED(255,0,0)
+ENDIF
+
+RETURN
