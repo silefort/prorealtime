@@ -1,0 +1,34 @@
+// Cet indicateur retourne sur le même graphe un mm3 Monthly, Weekly et Daily
+// ça peut permettre de ne rentrer que si la tendance est haussière sur ces 3 unités de temps
+
+
+// On init toutes les variables pour éviter d'avoir des courbes qui viennent de nul part
+once w1=close
+once w2=close
+once w3=close
+
+once m1=close
+once m2=close
+once m3=close
+
+// Si on a changé de semaine (lundi est inférieur à vendredi)
+if dayofweek < dayofweek[1] then
+w3=w2
+w2=w1
+//w1 = cloture de la semaine précédente, permet de voir "plus vite" la cassure mmDaily à la hausse
+w1=close[1]
+//moving Average Week
+maw = (w1 + w2 + w3)/3
+endif
+
+// Si on a changé de semaine (lundi est inférieur à vendredi)
+if  Month<> Month[1] then
+m3=m2
+m2=m1
+//w1 = cloture de la semaine précédente, permet de voir "plus vite" la cassure mmDaily à la hausse
+m1=close[1]
+//moving Average Week
+mam = (m1 + m2 + m3)/3
+endif
+
+return average[3](close), maw, mam
